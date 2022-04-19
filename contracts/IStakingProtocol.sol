@@ -8,8 +8,8 @@ interface IStakingProtocol {
     struct PoolInfo {
         address stakingToken;
         address rewardToken;
+        uint256 yieldPerSecond;
         uint256 totalStaked;
-        uint8 yieldPerSecond;
     }
 
     struct StakingInfo {
@@ -22,6 +22,7 @@ interface IStakingProtocol {
     event Staked(address user, uint256 amount, uint256 poolId, uint256 time);
     event Claimed( address user, uint256 reward, uint256 poolId, uint256 time, bool unStaking);
 
+    function setCliff(uint256 _cliff) external returns (bool);
 
     function createPool( address stakingToken, address rewardToken, uint256 yieldPerSecond ) external returns (bool);
 
